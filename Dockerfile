@@ -1,7 +1,9 @@
 FROM python:3.9
 
-COPY requirements.txt /
-RUN pip install -r requirements.txt
+RUN pip install pipenv
+COPY Pipfile /
+COPY Pipfile.lock /
+RUN pipenv install --deploy
 COPY app.py /
 
-CMD [ "python", "app.py" ]
+CMD [ "pipenv", "run", "python", "app.py" ]
