@@ -31,4 +31,5 @@ def plot_cat(color):
 
 if __name__ == "__main__":
     print(get_cat_fact())
-    plot_cat(os.environ["color"])
+    # plot_cat(os.environ["color"])
+    plot_cat("black")

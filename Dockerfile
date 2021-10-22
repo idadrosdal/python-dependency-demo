@@ -1,9 +1,11 @@
 FROM python:3.9
 
-RUN pip install pipenv
-COPY Pipfile /
-COPY Pipfile.lock /
-RUN pipenv install --deploy
-COPY app.py /
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+ENV PATH="${PATH}:/root/.poetry/bin"
 
-CMD [ "pipenv", "run", "python", "app.py" ]
+COPY app.py /
+COPY pyproject.toml /
+COPY poetry.lock /
+RUN poetry install --no-dev
+
+CMD [ "poetry", "run", "python", "app.py" ]
