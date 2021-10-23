@@ -1,0 +1,7 @@
+name: catenv
+dependencies:
+  - python=3.9
+  - requests
+  - plotly
+variables:
+  color: black
